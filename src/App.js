@@ -9,15 +9,15 @@ function App() {
 
   return (
     <div className="App">
-       
-        <Isi 
-          key={data.id}
-          size={data.album.images[0].height}
-          url={data.album.images[0].url}
-          judul={data.album.name}
-          nama={data.artists[0].name}
+       {data.map(item =>(
+          <Isi 
+            key={item.id}
+            size={item.album.images[0].height}
+            url={item.album.images[0].url}
+            judul={item.album.name}
+            nama={item.artists[0].name}
           />
-
+        ))}
     </div>
        
   );
