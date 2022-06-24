@@ -5,31 +5,32 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 
-export default function MultiActionAreaCard() {
+const Isi = ({size, url, judul, nama}) => {
   return (
     <Card sx={{ maxWidth: 345 }}>
-      <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        />
-        <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </CardActionArea>
-      <CardActions>
-        <Button size="small" color="primary">
-          Share
-        </Button>
-      </CardActions>
+          <CardActionArea>
+            <CardMedia
+              component="img"
+              height={size}
+              image={url}
+              alt="album cover"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="div">
+                {judul}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {nama}
+              </Typography>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <Button size="small" color="primary">
+              Select
+            </Button>
+          </CardActions>
     </Card>
   );
 }
+
+export default Isi;
