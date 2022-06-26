@@ -9,6 +9,7 @@ const Dashboard = ( props ) => {
   const {token, logout} = props;
   const [searchKey, setSearchKey] = useState("")
   const [songs, setSongs] = useState([])
+  const [select, setSelect] = useState([])
 
   const searchSongs = async(e) =>{
     e.preventDefault()
@@ -26,6 +27,32 @@ const Dashboard = ( props ) => {
     console.log(songs);
   }
 
+  const add = (id) => {
+    const selectedSong = select;
+    selectedSong.push(id);
+    setSelect(selectedSong);
+  };
+
+  const remove = (id) => {
+      const selectedSong = select;
+      for (let i = 0; i < select.length; i++) {
+          if (select[i] === id) {
+              selectedSong.splice(i, 1);
+          }
+      }
+      setSelect(selectedSong);
+  }
+
+  const getStatus = (id) => {
+      let status = false;
+      for (let i = 0; i < select.length; i++) {
+          if (select[i] === id) {
+              status = true;
+          }
+      }
+      return status;
+  }
+
   return (
     <div className="bg-dark text-white">
             <h1>sudah masuk</h1>
@@ -39,18 +66,29 @@ const Dashboard = ( props ) => {
           <div className="">
             <Box sx={{ flexGrow: 1 }}>
               <Grid container spacing={2}>
-                {songs.map(song => (
-                  <Isi 
-                  key={song.key}
-                  size={song.album.images[0]} 
-                  url={song.album.images[0].url} 
-                  nama={song.artists[0].name} 
-                  judul={song.name}/>
-                ))}
+
+                {songs.map((song) => {
+                  const status = getStatus(song.uri);
+
+                  return(
+                    <Isi 
+                    key={song.id}
+                    size={song.album.images[0]} 
+                    url={song.album.images[0].url} 
+                    nama={song.artists[0].name} 
+                    judul={song.name}
+                    id={song.uri}
+                    bool={status}
+                    add={add}
+                    remove={remove}
+                    />
+                );
+              })}
+                
               </Grid>
             </Box>
           </div>
-          
+
     </div>
   );
 };
