@@ -16,43 +16,40 @@ const Isi = (props) => {
 
   return (
     <Grid item xs={3}>
-        <item>
-            <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345 }}>
 
-                <CardActionArea>
+            <CardActionArea>
 
-                    <CardMedia
-                    component="img"
-                    height={size}
-                    image={url}
-                    alt="album cover"
-                    />
+                <CardMedia
+                component="img"
+                height={size}
+                image={url}
+                alt="album cover"
+                />
 
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {judul}
-                        </Typography>
-                        <Typography variant="body2" color="text.secondary">
-                            {nama}
-                        </Typography>
-                    </CardContent>
+                <CardContent>
+                    <Typography gutterBottom variant="h5" component="div">
+                        {judul}
+                    </Typography>
+                    <Typography variant="body2" color="text.secondary">
+                        {nama}
+                    </Typography>
+                </CardContent>
 
-                </CardActionArea>
+            </CardActionArea>
 
-                <Box sx={{alignItems: 'center'}}>
-                    
-                    <Tombol
-                        statSelect={bool}
-                        id={id}
-                        add={add}
-                        remove={remove}
-                    />
-                    
-                </Box>
+            <Box sx={{alignItems: 'center'}}>
+                
+                <Tombol
+                    statSelect={bool}
+                    id={id}
+                    add={add}
+                    remove={remove}
+                />
+                
+            </Box>
 
-            </Card> 
-
-        </item>
+        </Card> 
     </Grid>
   );
 }
