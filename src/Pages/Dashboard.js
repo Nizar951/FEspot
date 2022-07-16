@@ -4,15 +4,14 @@ import {useState} from "react";
 import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Isi from "../Components/cardmusic";
-
+import {useSelector} from "react-redux";
 import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import Playlist from "../Components/playlist.js";
 
-const Dashboard = ( props ) => {
-  const {token, logout} = props;
-
+const Dashboard = (props) => {
+  const token = useSelector(state => state.user.user_token)
   const [searchKey, setSearchKey] = useState("")
   const [songs, setSongs] = useState([])
   const [select, setSelect] = useState([])
@@ -179,7 +178,7 @@ const Dashboard = ( props ) => {
             <Button 
               variant="contained"  
               color="error"
-              onClick={logout}
+              onClick={props.logout}
               >
                 Logout
             </Button>

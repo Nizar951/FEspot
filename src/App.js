@@ -2,39 +2,39 @@ import './App.css';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
 import { useEffect, useState } from 'react';
+import {setUserToken} from './store/user';
+import {useSelector, useDispatch} from 'react-redux';
 
 function App() {
 
-  const [token, setToken] = useState("")
+  const dispatch = useDispatch();
+  const user_token = useSelector(state => state.user.user_token);
 
   useEffect(  ()  =>  {
 
-    const hash = window.location.hash
-    let token = window.localStorage.getItem("token")
+    const hash = window.location.hash;
+    window.location.hash = "";
 
-    if(!token && hash){
-      token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
+    if(!user_token && hash){
+      const _token = hash.substring(1).split("&").find(elem => elem.startsWith("access_token")).split("=")[1]
 
-      window.location.hash =""
-      window.localStorage.setItem("token", token)
-      
+      window.localStorage.setItem("token", _token)
+      dispatch(setUserToken(_token))
+    
     }
-
-    setToken(token)
   
-  }, [])
+  }, [user_token, dispatch])
 
   const logout = () =>{
-    setToken("")
+    dispatch(setUserToken(""))
     window.localStorage.removeItem("token")
   }
 
   return (
     <div className="App">
-       { token ?
+       { user_token ?
           <Dashboard 
-              token = {token}
-              logout = {logout}
+            logout = {logout}
           />
         :
           <Login />
