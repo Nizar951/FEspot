@@ -4,6 +4,7 @@ import Dashboard from './Pages/Dashboard';
 import { useEffect, useState } from 'react';
 import {setUserToken} from './store/user';
 import {useSelector, useDispatch} from 'react-redux';
+import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
 
 function App() {
 
@@ -26,21 +27,33 @@ function App() {
   }, [user_token, dispatch])
 
   const logout = () =>{
-    dispatch(setUserToken(""))
+    user_token = ""
     window.localStorage.removeItem("token")
   }
 
   return (
-    <div className="App">
-       { user_token ?
-          <Dashboard 
+    <Router>
+      <Switch>
+        <Route path='/create-playlist' exact={true}>
+        { user_token ?
+            (<Dashboard 
             logout = {logout}
-          />
-        :
-          <Login />
-
-       }
-    </div>
+            />)
+            :
+            (<Redirect exact from='/create-playlist'to='/' />)
+        }
+        </Route>
+        <Route path='/'>
+        { user_token ?
+            (<Dashboard 
+            logout = {logout}
+            />)
+            :
+            <Login />
+        }
+        </Route>
+      </Switch>
+    </Router>
        
   );
 }

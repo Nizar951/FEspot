@@ -2,13 +2,10 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import {useState} from "react";
 import Grid from '@mui/material/Grid';
-import Box from '@mui/material/Box';
 import Isi from "../Components/cardmusic";
 import {useSelector} from "react-redux";
-import AppBar from '@mui/material/AppBar';
-import Toolbar from '@mui/material/Toolbar';
-import Button from '@mui/material/Button';
 import Playlist from "../Components/playlist.js";
+import Header from "../Components/header";
 
 const Dashboard = (props) => {
   const token = useSelector(state => state.user.user_token)
@@ -18,13 +15,13 @@ const Dashboard = (props) => {
   const [user, setUser] = useState([])
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
-
+  const logout = props.logout;
   useEffect(()=>{
     if(token){
       getuser();
       // console.log(token);
     }
-  },[token])
+  },)
 
   const searchSongs = async(e) =>{
     e.preventDefault()
@@ -148,45 +145,13 @@ const Dashboard = (props) => {
 
   return (
     <div>
+      
+      <Header 
+        searchSongs={searchSongs}
+        setSearchKey={setSearchKey}
+        logout={logout}
+      />
 
-      <div className="Header">
-        <Box sx={{ flexGrow: 1 }}>
-          <AppBar position="static" color="success">
-            <Toolbar>
-            
-            <form onSubmit={searchSongs}>
-              
-              <input
-                placeholder="Search songs"
-                inputProps={{ 'aria-label': 'search' }}
-                type="text" 
-                onChange={e=> setSearchKey(e.target.value)}
-              />
-            </form>
-
-            <Grid container spacing={2}>
-              
-              <Grid item xs={8}>
-                <h2>Spotify</h2>
-              </Grid>
-
-              <Grid item xs={4}>
-              </Grid>
-              
-            </Grid>
-
-            <Button 
-              variant="contained"  
-              color="error"
-              onClick={props.logout}
-              >
-                Logout
-            </Button>
-
-            </Toolbar>
-          </AppBar>
-        </Box>
-      </div>
       <div className="Body">
 
       <Playlist 
