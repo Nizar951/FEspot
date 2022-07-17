@@ -1,7 +1,7 @@
 import './App.css';
 import Login from './Pages/Login';
 import Dashboard from './Pages/Dashboard';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {setUserToken} from './store/user';
 import {useSelector, useDispatch} from 'react-redux';
 import { BrowserRouter as Router, Switch, Route, Redirect } from 'react-router-dom';
@@ -27,7 +27,8 @@ function App() {
   }, [user_token, dispatch])
 
   const logout = () =>{
-    user_token = ""
+    const token = ""
+    dispatch(setUserToken(token))
     window.localStorage.removeItem("token")
   }
 
