@@ -75,3 +75,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 Flebox digunakan di container untuk memunculkan item
 
 grid digunakan pada layout hasil searching track
+
+UI component menggunakan MUI untuk navbar, playlist, dan hasil search
