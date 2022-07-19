@@ -20,7 +20,7 @@ const Isi = (props) => {
 
             <CardActionArea>
 
-                <CardMedia
+                <CardMedia data-testid="custom-element"
                 component="img"
                 height={size}
                 image={url}
@@ -41,6 +41,7 @@ const Isi = (props) => {
             <Box sx={{alignItems: 'center'}}>
                 
                 <Tombol
+                    
                     statSelect={bool}
                     id={id}
                     add={add}
