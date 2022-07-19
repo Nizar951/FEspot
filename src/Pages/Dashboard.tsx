@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import axios from "axios";
 import {useState} from "react";
 import Grid from '@mui/material/Grid';
-import Isi from "../Components/cardmusic";
+import Isi from "../Components/cardmusic.tsx";
 import {useSelector} from "react-redux";
 import Playlist from "../Components/playlist.js";
 import Header from "../Components/header";

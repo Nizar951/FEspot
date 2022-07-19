@@ -1,6 +1,6 @@
 import './App.css';
 import Login from './Pages/Login';
-import Dashboard from './Pages/Dashboard';
+import Dashboard from './Pages/Dashboard.tsx';
 import { useEffect } from 'react';
 import {setUserToken} from './store/user';
 import {useSelector, useDispatch} from 'react-redux';
